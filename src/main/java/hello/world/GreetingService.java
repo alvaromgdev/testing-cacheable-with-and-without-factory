@@ -1,10 +1,12 @@
 package hello.world;
 
 import io.micronaut.cache.annotation.Cacheable;
+import jakarta.inject.Singleton;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Singleton
 public class GreetingService {
 
     @Cacheable("greetings")
