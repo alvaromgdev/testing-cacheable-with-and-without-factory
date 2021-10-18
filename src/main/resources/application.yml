@@ -1,0 +1,6 @@
+micronaut:
+  application:
+    name: helloWorld
+  caches:
+    greetings:
+      expire-after-write: PT15s

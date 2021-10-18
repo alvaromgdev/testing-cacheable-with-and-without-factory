@@ -1,0 +1,50 @@
+plugins {
+    id("com.github.johnrengelman.shadow") version "7.0.0"
+    id("io.micronaut.application") version "2.0.4"
+}
+
+version = "0.1"
+group = "hello.world"
+
+repositories {
+    mavenCentral()
+}
+
+micronaut {
+    runtime("netty")
+    testRuntime("junit5")
+    processing {
+        incremental(true)
+        annotations("hello.world.*")
+    }
+}
+
+dependencies {
+    annotationProcessor("io.micronaut:micronaut-http-validation")
+    implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut:micronaut-runtime")
+    implementation("javax.annotation:javax.annotation-api")
+    runtimeOnly("ch.qos.logback:logback-classic")
+    implementation("io.micronaut:micronaut-validation")
+
+    implementation("io.micronaut.cache:micronaut-cache-core")
+    implementation("io.micronaut.cache:micronaut-cache-caffeine")
+
+    implementation "org.mock-server:mockserver-netty:5.11.1"
+    testImplementation "org.mock-server:mockserver-junit-rule:5.11.1"
+    testImplementation "org.mock-server:mockserver-junit-jupiter:5.11.1"
+
+    implementation "com.squareup.okhttp3:okhttp:3.8.1"
+}
+
+
+application {
+    mainClass.set("hello.world.Application")
+}
+java {
+    sourceCompatibility = JavaVersion.toVersion("10")
+    targetCompatibility = JavaVersion.toVersion("10")
+}
+
+
+
